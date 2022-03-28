@@ -1,5 +1,7 @@
 // main.js
-import bootstrap from './node_modules/bootstrap'
+import bootstrap from "./node_modules/bootstrap/dist/js/bootstrap.bundle.js";
+// import { Alert, Collapse } from "bootstrap";
+// import * as bootstrap from "./bootstrap";
 
 const emailInputEl = document.querySelector('#exampleInputEmail1');
 const modalEl = document.querySelector('#exampleModal');
