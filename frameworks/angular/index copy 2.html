@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,20 +15,20 @@
     <script>
         let app = angular.module("myapp", []);
 
-        app.controller("myController", function($scope) {
+        app.controller("myController", function ($scope) {
             $scope.hello = "Hello AngularJS";
         });
 
-        app.controller("myBoard", function($scope) {
+        app.controller("myBoard", function ($scope) {
             $scope.boardList = [
-                {no:1, title: 'Title1', writer: 'user1'},
-                {no:2, title: 'Title2', writer: 'user2'},
-                {no:3, title: 'Title3', writer: 'user3'},
+                { no: 1, title: 'Title1', writer: 'user1' },
+                { no: 2, title: 'Title2', writer: 'user2' },
+                { no: 3, title: 'Title3', writer: 'user3' },
             ];
 
-            $scope.remove = function(no) {
+            $scope.remove = function (no) {
                 if (!no) return;
-                
+
                 let num = -1;
                 for (let i = 0; i < $scope.boardList.length; i++) {
                     if ($scope.boardList[i].no === no) {
@@ -37,12 +38,69 @@
                 }
                 if (num === -1) return;
                 $scope.boardList.splice(num, 1);
-            } 
+            }
+
+            $scope.boardListForm = {};
+            $scope.test = function($event) {
+                var elem = $event.currentTarget;
+                console.log(elem);
+                if (elem === "addBoard()") {
+                    addBoard();
+                } else {
+                    update2();
+                }
+            }
+            $scope.addBoard = function () {
+                let newNo = !$scope.boardList.length ? 1 : $scope.boardList[$scope.boardList.length - 1].no + 1
+                let newItem = {
+                    no: newNo,
+                    title: $scope.boardListForm.title,
+                    writer: $scope.boardListForm.writer
+                };
+                $scope.boardList.push(newItem);
+                $scope.boardListForm.title = '';
+                $scope.boardListForm.writer = '';
+            }
+            $scope.update = function(no) {
+                let num = -1;
+                for (let i = 0; i < $scope.boardList.length; i++) {
+                    if ($scope.boardList[i].no === no) {
+                        num = i;
+                        break;
+                    }
+                }
+                let newUpdateItem = $scope.boardList[num];
+                $scope.boardListForm.no = newUpdateItem.no;
+                $scope.boardListForm.title = newUpdateItem.title;
+                $scope.boardListForm.writer = newUpdateItem.writer;
+            }
+            $scope.update2 = () => {
+                    let newUpdateItem = {
+                        no: $scope.boardListForm.no,
+                        title: $scope.boardListForm.title,
+                        writer: $scope.boardListForm.writer
+                    }
+                    let num2 = -1;
+                for (let i = 0; i < $scope.boardList.length; i++) {
+                    if ($scope.boardList[i].no === newUpdateItem.no) {
+                        num2 = i;
+                        break;
+                    }
+                }
+                    $scope.boardList.splice(num2, 1, newUpdateItem);
+            }
         });
     </script>
 </head>
+
 <body ng-app="myapp">
     <div ng-controller="myBoard">
+        <form ng-submit="addBoard()">
+            Title :<input type="text" ng-model="boardListForm.title" autofocus /><br />
+            User : <input type="text" ng-model="boardListForm.writer" autofocus /><br />
+            <button type="submit">추 가</button>
+            <button ng-click="update2()" type="button">수 정</button>
+        </form> <p></p><br />
         <table border="1">
             <tr>
                 <td style="width: 50px;">No</td>
@@ -65,4 +123,5 @@
         {{ hello }}
     </h1>
 </body>
+
 </html>
