@@ -10,18 +10,59 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <title>angular test</title>
     <script>
         let app = angular.module("myapp", []);
 
         app.controller("myController", function($scope) {
             $scope.hello = "Hello AngularJS";
         });
+
+        app.controller("myBoard", function($scope) {
+            $scope.boardList = [
+                {no:1, title: 'Title1', writer: 'user1'},
+                {no:2, title: 'Title2', writer: 'user2'},
+                {no:3, title: 'Title3', writer: 'user3'},
+            ];
+
+            $scope.remove = function(no) {
+                if (!no) return;
+                
+                let num = -1;
+                for (let i = 0; i < $scope.boardList.length; i++) {
+                    if ($scope.boardList[i].no === no) {
+                        num = i;
+                        break;
+                    }
+                }
+                if (num === -1) return;
+                $scope.boardList.splice(num, 1);
+            } 
+        });
     </script>
-    <title>angular test</title>
 </head>
-<body>
-    <div ng-app="myapp" ng-controller="myController">
-        {{ hello }}
+<body ng-app="myapp">
+    <div ng-controller="myBoard">
+        <table border="1">
+            <tr>
+                <td style="width: 50px;">No</td>
+                <td style="width: 50px;">Title</td>
+                <td style="width: 50px;">Name</td>
+                <td style="width: 50px;">Remove</td>
+                <td style="width: 50px;">Update</td>
+            </tr>
+            <tr ng-repeat="item in boardList">
+                <td style="width: 50px;">{{ $index + 1 }}</td> <!-- item.no로 불러도 됨, ng-repeat는 v-for와 같은 동작 -->
+                <td style="width: 50px;">{{ item.title }}</td>
+                <td style="width: 50px;">{{ item.writer }}</td>
+                <td style="width: 50px;"><button type="button" ng-click="remove(item.no)">삭제</button></td>
+                <td style="width: 50px;"><button type="button" ng-click="update(item.no)">수정</button></td>
+            </tr>
+        </table>
     </div>
+    <hr />
+    <h1 ng-controller="myController">
+        {{ hello }}
+    </h1>
 </body>
 </html>
