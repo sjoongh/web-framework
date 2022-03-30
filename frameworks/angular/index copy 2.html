@@ -110,7 +110,7 @@
                 <td style="width: 50px;">Update</td>
             </tr>
             <tr ng-repeat="item in boardList">
-                <td style="width: 50px;">{{ $index + 1 }}</td> <!-- item.no로 불러도 됨, ng-repeat는 v-for와 같은 동작 -->
+                <!-- <td style="width: 50px;">{{ $index + 1 }}</td> item.no로 불러도 됨, ng-repeat는 v-for와 같은 동작 -->
                 <td style="width: 50px;">{{ item.title }}</td>
                 <td style="width: 50px;">{{ item.writer }}</td>
                 <td style="width: 50px;"><button type="button" ng-click="remove(item.no)">삭제</button></td>

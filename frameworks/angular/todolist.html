@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            background-color: #e4e4e4;
+        }
+
+        .done {
+            text-decoration: line-through;
+            color: grey;
+        }
+
+        input[type=checkbox] {
+            -ms-transform: scale(2);
+            -moz-transform: scale(2);
+            -webkit-transform: scale(2);
+            -o-transform: scale(2);
+            padding: 10px;
+        }
+
+        .container {
+            display: block;
+            width: 400px;
+            margin: 10px auto 100px;
+            background-color: #fff;
+            padding: 0px 10px 10px 10px;
+            border-radius: 10px
+        }
+
+        h2 {
+            border-bottom: 3px solid #333;
+            padding: 20px 0 10px;
+            margin: 0;
+        }
+        #list {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+            padding: 20px 0 10px;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="todoCtrl">
+
+    <div class="container">
+        <h2>My Todo List</h2>
+        <form ng-submit="todoAdd()">
+            <br />
+            <input type="text" ng-model="todoInput" style="width:300px;height:38px;font-size:15px; border-radius: 5px;"
+                placeholder="오늘의 할 일">
+            <input class="btn btn-primary" type="submit" value="추 가">
+        </form>
+        <div class="list-container">
+            <h2>할 일 목록</h2>
+            <br />
+            <div id="list" ng-repeat="idx in todoList">
+                <input type='checkbox' ng-model='idx.done' />
+                <span style="font-size:30px;" ng-class='{done: idx.done}' ng-bind="idx.todoText"></span>
+                <button ng-click="remove(idx.no)" type="button" class="btn btn-danger">삭 제</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('todoCtrl', function ($scope) {
+            $scope.todoList = [
+                { no: 1, todoText: '^>^;;', done: false }
+            ];
+
+            $scope.todoAdd = function () {
+                let No = !$scope.todoList.length ? 1 : $scope.todoList[$scope.todoList.length - 1].no + 1
+                $scope.todoList.push(
+                    {
+                        no: No,
+                        todoText: $scope.todoInput,
+                        done: false
+                    });
+                $scope.todoInput = "";
+            };
+
+            $scope.remove = function (no) {
+                if (!no) return;
+
+                let num = -1;
+                for (let i = 0; i < $scope.todoList.length; i++) {
+                    if ($scope.todoList[i].no === no) {
+                        num = i;
+                        break;
+                    }
+                }
+                if (num === -1) return;
+                $scope.todoList.splice(num, 1);
+            };
+        });
+    </script>
+
+</body>
+
+</html>
