@@ -1,8 +1,9 @@
+import './Hello.css'
+
 function Hello() {
+    const name = 'Yuna';
     return (
-        <div>
-            <h1>안녕하세요</h1>
-        </div>
+            <h1>안녕하세요{name}</h1>
     );
 }
 
