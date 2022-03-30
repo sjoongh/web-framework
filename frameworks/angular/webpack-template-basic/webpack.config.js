@@ -5,7 +5,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin') // 웹팩으로 빌드�
 // 3. 개발자가 만든 index.html(template)을 참고하여 webpack에서 생성할 수 있도록 도와줌
 const CopyPlugin = require('copy-webpack-plugin') // 특정한 디렉터리나 파일을 복사해 번들링 된 폴더 내에 경로로 삽입하는 플러그인
 // 로더는 파일을 해석하고 변환하는 과정에 관여하는 반면, 플러그인은 해당 결과물의 형태를 바꾸는 역할
-
+const postcssLoader = {    
+	loader:'postcss-loader',    
+    options:{        
+    	postcssOptions:{            
+        	config: path.resolve('./.postcsssrc.js'),        
+            }    
+    }
+}
 // export
 module.exports = {
     // 파일을 읽어들이기 시작하는 진입점 설정
@@ -21,7 +28,7 @@ module.exports = {
         // path: path.resolve(__dirname, 'dist'),
         path: path.join(__dirname, 'dist'),
         filename: 'main.js',
-        clean: true, // 이전의 build파일 clean
+        clean: true, // 이전의 build파일 cleanx
     },
 
     module: {
@@ -37,12 +44,13 @@ module.exports = {
             use: [ // 뒤(sass-loader)에서부터 실행된다 && 모듈로 변경된 css를 js로 읽게함
                 'style-loader',
                 'css-loader',
-                'postcss-loader',
+                postcssLoader,
                 'sass-loader'
             ],
             }
         ]
     },
+    
     // 번들링 후 결과물의 처리 방식
     plugins: [
         new HtmlWebpackPlugin({template: './index.html'}),
