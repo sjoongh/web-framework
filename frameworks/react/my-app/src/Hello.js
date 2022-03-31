@@ -1,6 +1,7 @@
 import React from 'react';
 import './Hello.css'
 
+// props로 부모로부터 받은 데이터 활용
 function Hello(props) {
     const name = 'Yuna';
     return (

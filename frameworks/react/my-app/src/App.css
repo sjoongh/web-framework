@@ -11,3 +11,16 @@
   font-weight: 600;
   font-size: 20px;
 }
+
+.list {
+  margin-top: 30px;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.modal {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: azure;
+}
