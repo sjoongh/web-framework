@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+// import MyModal from './Commponent/MyModal';
 
 function App() { // return의 ()는 가독성을 위해 넣어줌, 안 넣어도 잘 돌아감
   let nicName = "kingsmile";
@@ -9,10 +10,15 @@ function App() { // return의 ()는 가독성을 위해 넣어줌, 안 넣어도
   let [like, setLike] = useState(0); // 첫번째 원소는 상태값이고, 두번째 원소는 상태를 업데이트하는 함수
   // 수시로 변경되는 데이터 useState
 
+  let [flag, setFlag] = useState(false);
   function changeTitle() {
     let newTitle = [...title];
     newTitle[0] = '서대문 맛집 리스트';
     setTitle(newTitle);
+  }
+
+  function onoff () {
+    setFlag({ flag: MyModal() })
   }
 
   // <Hello name="React" />로 자식에 데이터 전달
@@ -33,12 +39,41 @@ function App() { // return의 ()는 가독성을 위해 넣어줌, 안 넣어도
           <p>3월 30일 발행</p>
         </div>
         <div className="list">
-          <h3>{ title[2] }</h3>
+          <h3 onClick= { () => { setFlag(true) } }>{ title[2] }</h3>
           <p>3월 30일 발행</p>
         </div>
 
+        <button onClick={ () => { onoff() } }>Modal ON/OFF</button>
+
+        {
+          flag === true
+          ? <MyModal />
+          : null
+        }
     </div>
   );
+
+  function MyModal() {
+    return (
+        <div className="modal">
+          <h2>제목</h2>
+          <p>날짜</p>
+          <p>상세내용</p>
+        </div>
+    );
 }
+
+function MyComponent() {
+  return (
+      <div className="modal">
+        <h2>제목</h2>
+        <p>날짜</p>
+        <p>상세내용</p>
+      </div>
+  );
+}
+}
+
+
 
 export default App;
