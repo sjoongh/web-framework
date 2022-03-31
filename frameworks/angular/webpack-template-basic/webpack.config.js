@@ -1,5 +1,5 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin') // 웹팩으로 빌드한 결과물로 HTML파일을 생성해주는 플러그인
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 1. webpack에서 생성된 번들을 자동으로 import하는 HTML파일을 생성, 매 빌드마다 bundle의 이름을 바꾸게된다면 HTML파일도 변경해주어야 하므로
 // 2. 이것을 통해 HTML파일도 같이 생성
 // 3. 개발자가 만든 index.html(template)을 참고하여 webpack에서 생성할 수 있도록 도와줌

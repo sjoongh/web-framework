@@ -1,9 +1,15 @@
+import React from 'react';
 import './Hello.css'
 
-function Hello() {
+function Hello(props) {
     const name = 'Yuna';
     return (
-            <h1>안녕하세요{name}</h1>
+        <>
+        <p>{props.name}</p>
+        <div>
+            <h2>{props.message}</h2>
+        </div>
+        </>
     );
 }
 
