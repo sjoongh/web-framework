@@ -21,6 +21,10 @@ function App() { // return의 ()는 가독성을 위해 넣어줌, 안 넣어도
     setFlag({ flag: MyModal() })
   }
 
+  function toDay() {
+    document.querySelector('#date').innerHTML = new Date().toISOString.slice(0, 7);
+  }
+
   // <Hello name="React" />로 자식에 데이터 전달
   return (
     <div className="App">
@@ -37,6 +41,8 @@ function App() { // return의 ()는 가독성을 위해 넣어줌, 안 넣어도
         <div className="list">
           <h3>{ title[1] }</h3>
           <p>3월 30일 발행</p>
+          <div><img src="" alt="photo1" /></div>
+          <div></div>
         </div>
         <div className="list">
           <h3 onClick= { () => { setFlag(true) } }>{ title[2] }</h3>
@@ -53,10 +59,10 @@ function App() { // return의 ()는 가독성을 위해 넣어줌, 안 넣어도
     </div>
   );
 
-  function MyModal() {
+  function MyModal(props) {
     return (
         <div className="modal">
-          <h2>제목</h2>
+          <h2>{props.title}</h2>
           <p>날짜</p>
           <p>상세내용</p>
         </div>
