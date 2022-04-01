@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+// import '../components/MyComponents.css';
+
 class MyComponents extends Component {
     // 생성자
     // constructor(props) {
@@ -43,4 +45,22 @@ class MyComponents extends Component {
             messages: this.state.messages.filter( (item, idx) => idx !== index)
         })
     }
+
+    render() {
+        // 변수선언
+        const {msg, age} = this.props;
+        
+        const {number, message, valudate, messages} = this.state;
+        const {onDecrement, handleClick, handlerKeyPress, handleDoubleClick} = this;
+        const message_list = messages.map( (item, idx) => {
+            <li key={idx} onDoubleClick={ () => handleDoubleClick(idx) }>{item}</li>
+        })
+        return (
+            <>
+                <h3>Hello { msg } / { age }</h3>
+            </>
+        );
+    };
 }
+
+export default MyComponents;
