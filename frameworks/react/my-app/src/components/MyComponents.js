@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 // import '../components/MyComponents.css';
 
 class MyComponents extends Component {
@@ -50,17 +50,44 @@ class MyComponents extends Component {
         // 변수선언
         const {msg, age} = this.props;
         
-        const {number, message, valudate, messages} = this.state;
+        const {number, message, validate, messages} = this.state;
         const {onDecrement, handleClick, handlerKeyPress, handleDoubleClick} = this;
-        const message_list = messages.map( (item, idx) => {
+        const message_list = messages.map( (item, idx) => (
             <li key={idx} onDoubleClick={ () => handleDoubleClick(idx) }>{item}</li>
-        })
+        ));
+
         return (
             <>
+                <h2>Wellcome {this.props.nai } / { this.props.hi }</h2>
+                <hr />
                 <h3>Hello { msg } / { age }</h3>
+                <h4>상태변수 { number }</h4>
+                <button onClick={ () => (this.setState({
+                    number: number + 1
+                }))
+                }>증가</button>
+                <button onClick={ onDecrement }>감 소</button>
+                <h4>Message : {message}</h4>
+                <button onClick={ handleClick}>포커스 주기</button>
+                <input type="text" name="message" value={message}
+                    onChange = { (event) => {this.setState({
+                        [event.target.name]: event.target.value
+                    })}}
+                    className={ validate ? 'success' : 'failure' }
+                    ref={ (ref) => this.myInput = ref}
+                    onKeyDown={handlerKeyPress}
+                    />
+                <ul>
+                    { message_list }
+                </ul>
             </>
         );
     };
+}
+
+MyComponents.propTypes = {
+    msg: PropTypes.string,
+    age: PropTypes.number.isRequired
 }
 
 export default MyComponents;
