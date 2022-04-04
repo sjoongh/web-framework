@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sjoongh/web-framework#readme",
   "dependencies": {
-    "bootstrap": "^5.1.3"
+    "bootstrap": "^5.1.3",
+    "react-bootstrap": "^2.2.2"
   }
 }

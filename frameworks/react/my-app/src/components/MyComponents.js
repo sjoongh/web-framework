@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import MyComponentFunc from './MyComponentFunc';
 // import '../components/MyComponents.css';
 
 class MyComponents extends Component {
@@ -58,6 +59,7 @@ class MyComponents extends Component {
 
         return (
             <>
+                <MyComponentFunc />
                 <h2>Wellcome {this.props.nai } / { this.props.hi }</h2>
                 <hr />
                 <h3>Hello { msg } / { age }</h3>
