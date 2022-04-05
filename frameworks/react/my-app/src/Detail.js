@@ -4,7 +4,7 @@ import {useHistory, useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import Data from './data';
 
-let myBox = styled.div`
+let MyBox = styled.div`
     padding: 20px;
 `;
 
@@ -21,11 +21,15 @@ function Detail({match}){
     return(
         <div className='container'>
             <myBox>
-                안녕하세요.
-                반갑습니다.
+                <MyTitle color="blue">안녕하세요</MyTitle>
+                <MyTitle color={'red'}>반갑습니다.</MyTitle>
             </myBox>
+            <div className="my-alert">
+                <p>재고가 얼마 남지 않았습니다.</p>
+            </div>
+            
             <div className="row">
-                <div className='col-md-6'>
+                <div className='col-md-6 red'>
                     <img src={`https://raw.githubusercontent.com/ai-edu-pro/busan/main/t${match.params.index}.jpg`} width="100%" alt="" />
                 </div>
             </div>
