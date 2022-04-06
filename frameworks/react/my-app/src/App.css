@@ -1,48 +1,21 @@
-/* .App {
-  text-align: center;
-}
-
-.nav {
-  background-color: gray;
-  width: 100%;
-  display: flex;
-  color: aqua;
-  padding: 20px;
-  font-weight: 600;
-  font-size: 20px;
-}
-
-.list {
-  margin-top: 30px;
-  text-align: left;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.modal {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: azure;
-} */
-
 .App {
   text-align: center;
 }
 
 .jumbotron {
-  height: 350px;
+  background-repeat: no-repeat;
   background-image: url('./background.jpg');
+  /* background-position: center; */
   background-size: cover;
-  background-position: center;
-  color: yellowgreen;
-}
+  overflow: hidden;
 
-.jumbotron button {
-  margin-top: 300px;
 }
-
-.col-md-4 img {
+/* .jumbotron img {
   max-width: 100%;
   height: auto;
-  display: auto;
+  display: block;
+} */
+
+.jp button {
+  margin-top: 300px;
 }
