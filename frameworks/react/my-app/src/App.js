@@ -15,6 +15,13 @@ function App(e) {
 
   let [shrit, setShrit] = useState(Data);
 
+  async function test() {
+    await axios.get('https://raw.githubusercontent.com/ai-edu-pro/busan/main/data2.json')
+    .then((res) => {
+      setShrit(shirt => [...shirt, res.data]);
+    });
+  }
+
   return (
    
     <div className="App">
@@ -76,13 +83,7 @@ function App(e) {
     </Switch>
 
     <button className="btn btn-primary"
-      onClick={() => {
-        axios.get('https://raw.githubusercontent.com/ai-edu-pro/busan/main/data2.json')
-        .then( e => {
-          console.log(e);
-        });
-        axios.post();
-      }}>더보기</button>
+      onClick={ test }>더보기</button>
     </div>
     </div>
   );
