@@ -77,7 +77,10 @@ function App(e) {
 
     <button className="btn btn-primary"
       onClick={() => {
-        axios.get();
+        axios.get('https://raw.githubusercontent.com/ai-edu-pro/busan/main/data2.json')
+        .then( e => {
+          console.log(e);
+        });
         axios.post();
       }}>더보기</button>
     </div>
