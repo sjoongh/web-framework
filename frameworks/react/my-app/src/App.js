@@ -15,11 +15,18 @@ function App(e) {
 
   let [shrit, setShrit] = useState(Data);
 
-  async function test() {
-    await axios.get('https://raw.githubusercontent.com/ai-edu-pro/busan/main/data2.json')
+  function test() {
+    // promise방식의 axios사용
+    axios.get('https://raw.githubusercontent.com/ai-edu-pro/busan/main/data2.json')
     .then((res) => {
       setShrit(shirt => [...shirt, res.data]);
+    }).catch(() => {
+      console.log('error');
     });
+
+    // async / await방식의 axios사용
+    // 이때 async는 사용 함수 앞에 붙어있어야함
+    // const test = await axios.get('https://raw.githubusercontent.com/ai-edu-pro/busan/main/data2.json')
   }
 
   return (
