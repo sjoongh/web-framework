@@ -1,6 +1,7 @@
 /* eslint-disable */
 
-import { useState } from "react";
+import { useContext, useState } from "react";
+import React from 'react';
 import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
 import "./App.css";
 import Data from './data.js'
@@ -11,9 +12,14 @@ import { Link, Route, Switch } from 'react-router-dom'
 import Detail from "./Detail";
 import Change from "./Change";
 
+// context는 vue에서 eventbus와 같은 역할을 수행함
+// 어느곳에서도(컴포넌트) 전역변수로 사용할 수 있음
+export let inventContext = React.createContext();
+// let invent = useContext(inventContext);
 function App(e) {
-
+  const MyStore = React.createContext();
   let [shrit, setShrit] = useState(Data);
+  let [invent, setInvent] = useState([9, 8, 12]);
 
   function test() {
     // promise방식의 axios사용
@@ -30,7 +36,6 @@ function App(e) {
   }
 
   return (
-   
     <div className="App">
       <div className="container">
       <Navbar bg="light" expand="lg">
@@ -66,7 +71,7 @@ function App(e) {
      {/* <div>
       <Change />
      </div> */}
-
+     <inventContext.Provider value={invent}>
       <div className="container" >
         <div className="row">
           <div className="col">
@@ -78,10 +83,13 @@ function App(e) {
           </div>
         </div>
       </div>
+      </inventContext.Provider>
       </Route>
 
-      <Route  path="/detail/:id">  
-        <Detail shrit={shrit}  />
+      <Route  path="/detail/:id">
+      <inventContext.Provider value={invent}>
+        <Detail shrit={shrit} invent={invent}   />
+        </inventContext.Provider>
       </Route>
      
       <Route path="/cart">

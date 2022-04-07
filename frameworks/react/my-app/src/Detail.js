@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import "./Detail.scss";
+import { inventContext } from "./App.js";
 
 let MyBox = styled.div`
   padding: 20px;
@@ -63,6 +64,8 @@ function Detail(props) {
           <h4>{search.title}</h4>
           <p>{search.content}</p>
           <p>{search.price}원</p>
+          {/* <Information invent={props.invent} /> */}
+          <TestContext />
           <button className="btn btn-danger">주문하기</button>&nbsp;
           <button
             onClick={() => {
@@ -86,5 +89,21 @@ function Detail(props) {
     </div>
   );
 }
+
+function TestContext() {
+  // let invent= useContext({inventContext});
+  // console.log({invent});
+    return (
+      <inventContext.Consumer>
+        {value => <p>{ value[0] }</p>}
+      </inventContext.Consumer>
+      );
+}
+
+// function Information(e) {
+//   return(
+//     <p>재고 : { e.invent[0] }</p>
+//   );
+// }
 
 export default Detail;
