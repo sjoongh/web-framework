@@ -46,10 +46,17 @@ function Card(props) {
           </h4>
           <h6>{props.shrit.content}</h6>
           <p>{props.shrit.price}</p>
+          <button onClick={()=>{props.dispatch()}}></button>
         </div>
       </div>
     </div>
   );
+}
+
+function stateStatus(state) {
+  return {
+    state
+  }
 }
 
 export default Card;
