@@ -74,6 +74,7 @@ function Detail(props) {
         </div>
         <div className="mt-5">
             <Nav variant="tabs" defaultActiveKey="link-0">
+                {/* cart재사용해서? */}
                 <Nav.Item>
                     <Nav.Link eventKey="link-0" onClick={()=>{setClickTab(0)}}>환불정책</Nav.Link>
                         </Nav.Item>

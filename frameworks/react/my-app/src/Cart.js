@@ -1,8 +1,13 @@
 import React from "react";
 import {Table} from 'react-bootstrap';
-import {connect} from 'react-redux'
+import {connect, useDispatch} from 'react-redux'
+import { useSelector } from 'react-redux'
 
 function Cart(props) {
+
+    let state = useSelector((state) => state);
+    console.log(state.reducer);
+    let dispatch = useDispatch();
     // const datas = props.reducer;
     // const reducerClose = props.reducerClose;
     return(
@@ -18,14 +23,16 @@ function Cart(props) {
             </thead>
             <tbody>
 
-                {props.state.map((item, i)=>{
+                {/* {props.state.map((item, i)=>{ */}
+                
+                {state.reducer.map((item, i)=>{
                     return(
                         <tr key={i}>
                             <td>{item.id}</td>
                             <td>{item.name}</td>
                             <td>{item.quan}</td>
-                            <td><button onClick={()=>{props.dispatch({type: "INCREASE", i: item.id})}}>+</button></td>
-                            <td><button onClick={()=>{props.dispatch({type: "DECREASE", i: item.id})}}>-</button></td>
+                            <td><button onClick={()=>{dispatch({type: "INCREASE", i: item.id})}}>+</button></td>
+                            <td><button onClick={()=>{dispatch({type: "DECREASE", i: item.id})}}>-</button></td>
                             
                         </tr>
                     )
