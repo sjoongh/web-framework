@@ -4,6 +4,42 @@ function eat(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+const getApple = async() => {
+    await eat(1000);
+    return 'apple';
+}
+
+const getBanana = async() => {
+    await eat(500);
+    return 'Banana';
+}
+
+const getCherry = async() => {
+    await eat(3000);
+    return 'Cherry';
+}
+
+async function process() {
+    try {
+        const results = await Promise.all([getApple(), getBanana(), getCherry()]);
+        console.log(results);
+    } catch(e) {
+        console.log(e);
+    }
+    // const apple = await getApple();
+    // console.log(apple);
+
+    // const banana = await getBanana();
+    // console.log(banana);
+
+    // const cherry = await getCherry();
+    // console.log(cherry);
+    // const results = await Promise.all([getApple(), getBanana(), getCherry()]);
+    // console.log(results);
+}
+
+process();
+
 // async function makeError() {
 //     console.log('hi');
 //     await eat(1000);
