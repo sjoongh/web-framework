@@ -1,33 +1,60 @@
 document.write('gasd');
 
-function increaseAndPrint(n) {
-    return new Promise(() => {
-        setTimeout((resolve, reject) => {
-            const value = n + 1;
-            if (value === 5) {
-                const error = new Error();
-                error.name = 'ValueIsFiveError'
-                // resolve(error);
-                return;
-            }
-
-            console.log(value);
-            reject(value);
-        }, 1000);
-    })
+function eat(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-increaseAndPrint(0).then(n => {
-    console.log('success : ', n);
-})
+// async function makeError() {
+//     console.log('hi');
+//     await eat(1000);
+//     const error = new Error();
+//     throw error;
+// }
 
-increaseAndPrint(3).then(n => {
-    console.log('success : ', n);
-})
+// async function process() {
+//     try {
+//         await makeError();
+//     } catch(e) {
+//         console.error(e);
+//     }
+// }
 
-increaseAndPrint(5).then(n => {
-    console.log('success : ', n);
-})
+// process();
+//-----------------------------------------------
+// function increaseAndPrint(n) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             const value = n + 1;
+//             if (value === 5) {
+//                 const error = new Error();
+//                 error.name = 'ValueIsFiveError'
+//                 reject(error);
+//                 return;
+//             }
+
+//             console.log(value);
+//             resolve(value);
+//         }, 1000);
+//     })
+// }
+
+// increaseAndPrint(0).then(n => {
+//     return increaseAndPrint(n);
+// }).then(n => {
+//     return increaseAndPrint(n);
+// }).then(n => {
+//     return increaseAndPrint(n);
+// }).then(n => {
+//     return increaseAndPrint(n);
+// })
+
+// increaseAndPrint(3).then(n => {
+//     console.log('success : ', n);
+// })
+
+// increaseAndPrint(5).then(n => {
+//     console.log('success : ', n);
+// })
 // -----------------------------------------------
 // function work() {
 //     setTimeout(() => {
